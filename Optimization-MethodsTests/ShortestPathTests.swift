@@ -42,7 +42,11 @@ class ShortestPathTests: XCTestCase {
     
     func testBellman_Ford() {
         let result = Bellman_Ford(graph, S)
-        println(result)
+        XCTAssert(result[V]!.weight == 9, "Bellman-Ford calculates minimum path from S to V")
+    }
+    
+    func testFIFO_Bellman_Ford() {
+        let result = FIFO_Bellman_Ford(graph, S)
         XCTAssert(result[V]!.weight == 9, "Bellman-Ford calculates minimum path from S to V")
     }
 }

@@ -15,17 +15,45 @@ func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
         d[vertex] = (nil, 500)
     }
     d[s]!.weight = 0
-    
+
     func relax(edge: Edge) {
         let currWeight = d[edge.from]!.weight + edge.weight
         if d[edge.to]!.weight > currWeight {
             d[edge.to] = (edge.from, currWeight)
         }
     }
-
+    
     // Main loop
     for vertex in graph.canvas {
         graph.edges.map(relax)
+    }
+
+    return d
+}
+
+func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
+    // Initilisation
+    var d = [Vertex : pw]()
+    
+    for vertex in graph.canvas {
+        d[vertex] = (nil, 500)
+    }
+    d[s]!.weight = 0
+
+    var queue = Queue<Vertex>()
+    queue.enqueue(s)
+    
+    func relax(edge: Edge) {
+        let currWeight = d[edge.from]!.weight + edge.weight
+        if d[edge.to]!.weight > currWeight {
+            d[edge.to] = (edge.from, currWeight)
+            if !queue.contains(edge.to) { queue.enqueue(edge.to) }
+        }
+    }
+    
+    // Main loop
+    while let u = queue.dequeue() {
+        u.neighbours.map(relax)
     }
     
     return d

@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
-struct Vertex: Hashable, Printable {
+class Vertex: Hashable, Printable {
     let key: String
+    var neighbours = [Edge]()
     var hashValue: Int { return key.hashValue }
     
     init(_ key: String) {

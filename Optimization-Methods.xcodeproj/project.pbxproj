@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B94284E21A70360500339481 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94284E11A70360500339481 /* Queue.swift */; };
 		B9B9FAA61A6FF6E300D9E404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAA51A6FF6E300D9E404 /* AppDelegate.swift */; };
 		B9B9FAA81A6FF6E300D9E404 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAA71A6FF6E300D9E404 /* ViewController.swift */; };
 		B9B9FAAA1A6FF6E300D9E404 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B9FAA91A6FF6E300D9E404 /* Images.xcassets */; };
@@ -15,13 +16,14 @@
 		B9B9FAC31A6FF7B200D9E404 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */; };
 		B9B9FAC61A6FF84900D9E404 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC51A6FF84900D9E404 /* Edge.swift */; };
 		B9B9FAC81A6FF90200D9E404 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC71A6FF90200D9E404 /* Graph.swift */; };
-		B9B9FACA1A7000EF00D9E404 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC91A7000EF00D9E404 /* GraphTests.swift */; };
+		B9B9FACA1A7000EF00D9E404 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC91A7000EF00D9E404 /* ModelTests.swift */; };
 		B9B9FACB1A7001DD00D9E404 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC71A6FF90200D9E404 /* Graph.swift */; };
 		B9B9FACC1A7001F600D9E404 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC51A6FF84900D9E404 /* Edge.swift */; };
 		B9B9FACD1A7001F900D9E404 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */; };
 		B9B9FACF1A70060300D9E404 /* ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FACE1A70060300D9E404 /* ShortestPath.swift */; };
 		B9B9FAD11A701CA900D9E404 /* ShortestPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAD01A701CA900D9E404 /* ShortestPathTests.swift */; };
 		B9B9FAD21A70200200D9E404 /* ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FACE1A70060300D9E404 /* ShortestPath.swift */; };
+		B9CBED4F1A70458800B5A4A5 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94284E11A70360500339481 /* Queue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B94284E11A70360500339481 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		B9B9FAA01A6FF6E300D9E404 /* Optimization-Methods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Optimization-Methods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9FAA41A6FF6E300D9E404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9B9FAA51A6FF6E300D9E404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +50,7 @@
 		B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		B9B9FAC51A6FF84900D9E404 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		B9B9FAC71A6FF90200D9E404 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
-		B9B9FAC91A7000EF00D9E404 /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
+		B9B9FAC91A7000EF00D9E404 /* ModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		B9B9FACE1A70060300D9E404 /* ShortestPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortestPath.swift; sourceTree = "<group>"; };
 		B9B9FAD01A701CA900D9E404 /* ShortestPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortestPathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B9FAB81A6FF6E300D9E404 /* Optimization_MethodsTests.swift */,
-				B9B9FAC91A7000EF00D9E404 /* GraphTests.swift */,
+				B9B9FAC91A7000EF00D9E404 /* ModelTests.swift */,
 				B9B9FAD01A701CA900D9E404 /* ShortestPathTests.swift */,
 				B9B9FAB61A6FF6E300D9E404 /* Supporting Files */,
 			);
@@ -135,6 +138,7 @@
 				B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */,
 				B9B9FAC51A6FF84900D9E404 /* Edge.swift */,
 				B9B9FAC71A6FF90200D9E404 /* Graph.swift */,
+				B94284E11A70360500339481 /* Queue.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -239,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B9FACF1A70060300D9E404 /* ShortestPath.swift in Sources */,
+				B94284E21A70360500339481 /* Queue.swift in Sources */,
 				B9B9FAA81A6FF6E300D9E404 /* ViewController.swift in Sources */,
 				B9B9FAA61A6FF6E300D9E404 /* AppDelegate.swift in Sources */,
 				B9B9FAC61A6FF84900D9E404 /* Edge.swift in Sources */,
@@ -252,8 +257,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B9FACB1A7001DD00D9E404 /* Graph.swift in Sources */,
-				B9B9FACA1A7000EF00D9E404 /* GraphTests.swift in Sources */,
+				B9B9FACA1A7000EF00D9E404 /* ModelTests.swift in Sources */,
 				B9B9FACC1A7001F600D9E404 /* Edge.swift in Sources */,
+				B9CBED4F1A70458800B5A4A5 /* Queue.swift in Sources */,
 				B9B9FACD1A7001F900D9E404 /* Vertex.swift in Sources */,
 				B9B9FAD11A701CA900D9E404 /* ShortestPathTests.swift in Sources */,
 				B9B9FAD21A70200200D9E404 /* ShortestPath.swift in Sources */,
@@ -437,6 +443,7 @@
 				B9B9FABE1A6FF6E300D9E404 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9B9FABF1A6FF6E300D9E404 /* Build configuration list for PBXNativeTarget "Optimization-MethodsTests" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +452,7 @@
 				B9B9FAC11A6FF6E300D9E404 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -21,5 +21,6 @@ public class Graph {
     func addEdgeFrom(source: Vertex, to: Vertex, weight: Int) {
         var edge = Edge(from: source, to: to, weight: weight)
         edges.append(edge)
+        source.neighbours.append(edge)
     }
 }
