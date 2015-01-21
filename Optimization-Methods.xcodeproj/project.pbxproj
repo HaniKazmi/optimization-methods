@@ -12,6 +12,16 @@
 		B9B9FAAA1A6FF6E300D9E404 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B9FAA91A6FF6E300D9E404 /* Images.xcassets */; };
 		B9B9FAAD1A6FF6E300D9E404 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B9FAAB1A6FF6E300D9E404 /* Main.storyboard */; };
 		B9B9FAB91A6FF6E300D9E404 /* Optimization_MethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAB81A6FF6E300D9E404 /* Optimization_MethodsTests.swift */; };
+		B9B9FAC31A6FF7B200D9E404 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */; };
+		B9B9FAC61A6FF84900D9E404 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC51A6FF84900D9E404 /* Edge.swift */; };
+		B9B9FAC81A6FF90200D9E404 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC71A6FF90200D9E404 /* Graph.swift */; };
+		B9B9FACA1A7000EF00D9E404 /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC91A7000EF00D9E404 /* GraphTests.swift */; };
+		B9B9FACB1A7001DD00D9E404 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC71A6FF90200D9E404 /* Graph.swift */; };
+		B9B9FACC1A7001F600D9E404 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC51A6FF84900D9E404 /* Edge.swift */; };
+		B9B9FACD1A7001F900D9E404 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */; };
+		B9B9FACF1A70060300D9E404 /* ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FACE1A70060300D9E404 /* ShortestPath.swift */; };
+		B9B9FAD11A701CA900D9E404 /* ShortestPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAD01A701CA900D9E404 /* ShortestPathTests.swift */; };
+		B9B9FAD21A70200200D9E404 /* ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FACE1A70060300D9E404 /* ShortestPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +44,12 @@
 		B9B9FAB21A6FF6E300D9E404 /* Optimization-MethodsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Optimization-MethodsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9FAB71A6FF6E300D9E404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9B9FAB81A6FF6E300D9E404 /* Optimization_MethodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optimization_MethodsTests.swift; sourceTree = "<group>"; };
+		B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		B9B9FAC51A6FF84900D9E404 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		B9B9FAC71A6FF90200D9E404 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		B9B9FAC91A7000EF00D9E404 /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
+		B9B9FACE1A70060300D9E404 /* ShortestPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortestPath.swift; sourceTree = "<group>"; };
+		B9B9FAD01A701CA900D9E404 /* ShortestPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortestPathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +93,8 @@
 			children = (
 				B9B9FAA51A6FF6E300D9E404 /* AppDelegate.swift */,
 				B9B9FAA71A6FF6E300D9E404 /* ViewController.swift */,
+				B9B9FACE1A70060300D9E404 /* ShortestPath.swift */,
+				B9B9FAC41A6FF7B800D9E404 /* Models */,
 				B9B9FAA91A6FF6E300D9E404 /* Images.xcassets */,
 				B9B9FAAB1A6FF6E300D9E404 /* Main.storyboard */,
 				B9B9FAA31A6FF6E300D9E404 /* Supporting Files */,
@@ -96,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				B9B9FAB81A6FF6E300D9E404 /* Optimization_MethodsTests.swift */,
+				B9B9FAC91A7000EF00D9E404 /* GraphTests.swift */,
+				B9B9FAD01A701CA900D9E404 /* ShortestPathTests.swift */,
 				B9B9FAB61A6FF6E300D9E404 /* Supporting Files */,
 			);
 			path = "Optimization-MethodsTests";
@@ -107,6 +127,16 @@
 				B9B9FAB71A6FF6E300D9E404 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B9B9FAC41A6FF7B800D9E404 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B9B9FAC21A6FF7B200D9E404 /* Vertex.swift */,
+				B9B9FAC51A6FF84900D9E404 /* Edge.swift */,
+				B9B9FAC71A6FF90200D9E404 /* Graph.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +238,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B9FACF1A70060300D9E404 /* ShortestPath.swift in Sources */,
 				B9B9FAA81A6FF6E300D9E404 /* ViewController.swift in Sources */,
 				B9B9FAA61A6FF6E300D9E404 /* AppDelegate.swift in Sources */,
+				B9B9FAC61A6FF84900D9E404 /* Edge.swift in Sources */,
+				B9B9FAC31A6FF7B200D9E404 /* Vertex.swift in Sources */,
+				B9B9FAC81A6FF90200D9E404 /* Graph.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B9FACB1A7001DD00D9E404 /* Graph.swift in Sources */,
+				B9B9FACA1A7000EF00D9E404 /* GraphTests.swift in Sources */,
+				B9B9FACC1A7001F600D9E404 /* Edge.swift in Sources */,
+				B9B9FACD1A7001F900D9E404 /* Vertex.swift in Sources */,
+				B9B9FAD11A701CA900D9E404 /* ShortestPathTests.swift in Sources */,
+				B9B9FAD21A70200200D9E404 /* ShortestPath.swift in Sources */,
 				B9B9FAB91A6FF6E300D9E404 /* Optimization_MethodsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
