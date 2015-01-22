@@ -7,13 +7,20 @@
 //
 
 typealias pw = (parent: Vertex?, weight: Int)
-func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
-    // Initilisation
+
+private func initRelax(vertices: [Vertex]) -> [Vertex : pw] {
     var d = [Vertex : pw]()
     
-    for vertex in graph.canvas {
+    for vertex in vertices {
         d[vertex] = (nil, 500)
     }
+    
+    return d
+}
+
+func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
+    // Initilisation
+    var d = initRelax(graph.canvas)
     d[s]!.weight = 0
 
     func relax(edge: Edge) {
@@ -33,14 +40,10 @@ func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
 
 func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
     // Initilisation
-    var d = [Vertex : pw]()
-    
-    for vertex in graph.canvas {
-        d[vertex] = (nil, 500)
-    }
+    var d = initRelax(graph.canvas)
     d[s]!.weight = 0
 
-    var queue = Queue<Vertex>()
+    let queue = Queue<Vertex>()
     queue.enqueue(s)
     
     func relax(edge: Edge) {
@@ -57,4 +60,28 @@ func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
     }
     
     return d
+}
+
+func Dijkstra(graph: Graph, s: Vertex) {
+    // Initilisation
+    var d = initRelax(graph.canvas)
+    d[s]!.weight = 0
+    
+    let minNodes = [Vertex]()
+    let queue = PriorityQueue<Int, Vertex>()
+    
+    func relax(edge: Edge) {
+        let currWeight = d[edge.from]!.weight + edge.weight
+        if d[edge.to]!.weight > currWeight {
+            d[edge.to] = (edge.from, currWeight)
+        }
+    }
+    
+    for (vertex, (_, weight)) in d {
+        queue.push(weight, value: vertex)
+    }
+    
+    while let u = queue.pop() {
+        u.neighbours.map(relax)
+    }
 }

@@ -15,7 +15,7 @@ class Node<T> {
     }
 }
 
-class Queue<T: Equatable> {
+class Queue<T: Equatable>: GeneratorType {
     var head: Node<T>? = nil
     var tail: Node<T>? = nil
     var isEmpty: Bool { return head == nil }
@@ -39,6 +39,10 @@ class Queue<T: Equatable> {
         return nil
     }
     
+    func next() -> T? {
+        return dequeue()
+    }
+    
     func contains(e: T) -> Bool {
         var next = head
         do {
@@ -46,5 +50,12 @@ class Queue<T: Equatable> {
             next = next?.next
         } while next != nil
         return false
+    }
+}
+
+extension Queue: SequenceType {
+    typealias Generator = Queue
+    func generate() -> Generator {
+        return self
     }
 }

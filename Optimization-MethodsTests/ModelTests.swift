@@ -54,6 +54,24 @@ class ModelTests: XCTestCase {
         XCTAssert(queue.dequeue() == 2, "Second element removed")
         XCTAssert(queue.dequeue() == 3, "Last element removed")
         XCTAssertNil(queue.dequeue(), "Queue is empty")
+    }
+    
+    func testPriorityQueue() {
+        let pQueue = PriorityQueue<Int, String>()
         
+        XCTAssertNil(pQueue.pop(), "Queue starts empty")
+        
+        pQueue.push(3, value: "Hello")
+        pQueue.push(1, value: "Bye")
+        
+        XCTAssert(pQueue.pop() == "Bye", "Minimum item popped")
+        
+        pQueue.push(5, value: "Howdy")
+        pQueue.push(2, value: "Test")
+        XCTAssert(pQueue.pop() == "Test", "Minimum item popped")
+        XCTAssert(pQueue.pop() == "Hello", "Minimum item popped")
+        XCTAssert(pQueue.pop() == "Howdy", "Minimum item popped")
+        
+        XCTAssertNil(pQueue.pop(), "Queue ends empty")
     }
 }
