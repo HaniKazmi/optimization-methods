@@ -8,22 +8,11 @@
 
 class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
     typealias heapType = (prio: PrioType, value: ValueType)
-    final private var heap = [heapType]()
-    private var valueIndice = [ValueType: Int]()
+    private final var heap = [heapType]()
     
     func push(priority: PrioType, value: ValueType) {
         heap.append((priority, value))
-
-        var current = heap.count - 1
-        
-        while current > 0 {
-            var parent = (current - 1) >> 1
-            if heap[parent].prio <= heap[current].prio {
-                break
-            }
-            swap(&heap[parent], &heap[current])
-            current = parent
-        }
+        percolateUp(heap.count - 1)
     }
     
     func pop() -> ValueType? {
@@ -31,7 +20,7 @@ class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
         
         swap(&heap[0], &heap[heap.endIndex - 1])
         let pop = heap.removeLast()
-        heapify(0)
+        percolateDown(0)
         return pop.value
     }
     
@@ -41,7 +30,16 @@ class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
     
     var count: Int { return heap.count }
     
-    func heapify(index: Int) {
+    func percolateUp(current: Int) {
+        if current == 0 { return }
+        let parent = (current - 1) >> 1
+        if heap[parent].prio > heap[current].prio {
+            swap(&heap[parent], &heap[current])
+            percolateUp(parent)
+        }
+    }
+    
+    func percolateDown(index: Int) {
         let left = index * 2 + 1
         let right = index * 2 + 2
         var smallest = index
@@ -54,8 +52,22 @@ class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
         }
         if smallest != index {
             swap(&heap[index], &heap[smallest])
-            heapify(smallest)
+            percolateDown(smallest)
         }
+    }
+    
+    func decreaseKey(value: ValueType, to priority: PrioType) {
+        let index = indexForValue(value)
+        heap[index].prio = priority
+        percolateUp(index)
+    }
+    
+    // TODO: 'indexForValue' is O(n), can make O(1)
+    func indexForValue(value: ValueType) -> Int {
+        for (index, (_, element)) in enumerate(heap) {
+            if element == value { return index }
+        }
+        return 0
     }
 }
 

@@ -69,8 +69,10 @@ class ModelTests: XCTestCase {
         pQueue.push(5, value: "Howdy")
         pQueue.push(2, value: "Test")
         XCTAssert(pQueue.pop() == "Test", "Minimum item popped")
+
+        pQueue.decreaseKey("Howdy", to: 2)
+        XCTAssert(pQueue.pop() == "Howdy", "Minimum item popped after decreaseKey")
         XCTAssert(pQueue.pop() == "Hello", "Minimum item popped")
-        XCTAssert(pQueue.pop() == "Howdy", "Minimum item popped")
         
         XCTAssertNil(pQueue.pop(), "Queue ends empty")
     }

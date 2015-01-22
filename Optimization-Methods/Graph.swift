@@ -22,6 +22,7 @@ func ==(lhs: Vertex, rhs: Vertex) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
 
+
 struct Edge: Printable {
     let from: Vertex
     let to: Vertex
@@ -29,6 +30,7 @@ struct Edge: Printable {
     
     var description: String { return "\(from) \(to) \(weight)"}
 }
+
 
 public class Graph {
     private(set) var canvas = [Vertex]()
@@ -42,8 +44,8 @@ public class Graph {
         vertices.map(addVertex)
     }
     
-    func addEdgeFrom(source: Vertex, to: Vertex, weight: Int) {
-        var edge = Edge(from: source, to: to, weight: weight)
+    func addEdgeFrom(source: Vertex, to destination: Vertex, weight: Int) {
+        var edge = Edge(from: source, to: destination, weight: weight)
         edges.append(edge)
         source.neighbours.append(edge)
     }

@@ -8,21 +8,21 @@
 
 typealias pw = (parent: Vertex?, weight: Int)
 
-private func initRelax(vertices: [Vertex]) -> [Vertex : pw] {
+private func initRelax(vertices: [Vertex], s: Vertex) -> [Vertex : pw] {
     var d = [Vertex : pw]()
     
     for vertex in vertices {
         d[vertex] = (nil, 500)
     }
+    d[s]!.weight = 0
     
     return d
 }
 
 func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
-    // Initilisation
-    var d = initRelax(graph.canvas)
-    d[s]!.weight = 0
-
+    // Initialisation
+    var d = initRelax(graph.canvas, s)
+    
     func relax(edge: Edge) {
         let currWeight = d[edge.from]!.weight + edge.weight
         if d[edge.to]!.weight > currWeight {
@@ -34,15 +34,14 @@ func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
     for vertex in graph.canvas {
         graph.edges.map(relax)
     }
-
+    
     return d
 }
 
 func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
-    // Initilisation
-    var d = initRelax(graph.canvas)
-    d[s]!.weight = 0
-
+    // Initialisation
+    var d = initRelax(graph.canvas, s)
+    
     let queue = Queue<Vertex>()
     queue.enqueue(s)
     
@@ -62,13 +61,45 @@ func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
     return d
 }
 
-func Dijkstra(graph: Graph, s: Vertex) {
-    // Initilisation
-    var d = initRelax(graph.canvas)
-    d[s]!.weight = 0
+func Dijkstra(graph: Graph, s: Vertex) -> [Vertex : pw] {
+    // Initialisation
+    var d = initRelax(graph.canvas, s)
     
-    let minNodes = [Vertex]()
     let queue = PriorityQueue<Int, Vertex>()
+    for (vertex, (_, weight)) in d {
+        queue.push(weight, value: vertex)
+    }
+    
+    func relax(edge: Edge) {
+        let currWeight = d[edge.from]!.weight + edge.weight
+        if d[edge.to]!.weight > currWeight {
+            queue.decreaseKey(edge.to, to: currWeight)
+            d[edge.to] = (edge.from, currWeight)
+        }
+    }
+    
+    while let u = queue.pop() {
+        u.neighbours.map(relax)
+    }
+    
+    return d
+}
+
+func topologicalSort(start: Vertex, var sortedVertices: [Vertex] = [Vertex]()) -> [Vertex] {
+    // TODO: 'contains' is O(n), can make O(1)
+    if !contains(sortedVertices, start){
+        for edge in start.neighbours {
+            sortedVertices = topologicalSort(edge.to, sortedVertices: sortedVertices)
+        }
+        sortedVertices.append(start)
+    }
+    return sortedVertices
+}
+
+func SingleSourceShortestPath(graph: Graph, s: Vertex) -> [Vertex : pw] {
+    // Initialisation
+    var d = initRelax(graph.canvas, s)
+    let sortedVertices = topologicalSort(s).reverse()
     
     func relax(edge: Edge) {
         let currWeight = d[edge.from]!.weight + edge.weight
@@ -77,11 +108,9 @@ func Dijkstra(graph: Graph, s: Vertex) {
         }
     }
     
-    for (vertex, (_, weight)) in d {
-        queue.push(weight, value: vertex)
+    for vertex in sortedVertices {
+        vertex.neighbours.map(relax)
     }
     
-    while let u = queue.pop() {
-        u.neighbours.map(relax)
-    }
+    return d
 }
