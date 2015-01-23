@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
-typealias pw = (parent: Vertex?, weight: Int)
+typealias pw = [Vertex: (parent: Vertex?, weight: Int)]
 
-private func initRelax(vertices: [Vertex], s: Vertex) -> [Vertex : pw] {
-    var d = [Vertex : pw]()
+private func initRelax(vertices: [Vertex], s: Vertex) -> pw {
+    var d = pw()
     
     for vertex in vertices {
         d[vertex] = (nil, 500)
@@ -19,7 +19,7 @@ private func initRelax(vertices: [Vertex], s: Vertex) -> [Vertex : pw] {
     return d
 }
 
-func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
+func Bellman_Ford(graph: Graph, s: Vertex) -> pw {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     
@@ -38,7 +38,7 @@ func Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
     return d
 }
 
-func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
+func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> pw {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     
@@ -61,7 +61,7 @@ func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> [Vertex : pw] {
     return d
 }
 
-func Dijkstra(graph: Graph, s: Vertex) -> [Vertex : pw] {
+func Dijkstra(graph: Graph, s: Vertex) -> pw {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     
@@ -96,7 +96,7 @@ func topologicalSort(start: Vertex, var sortedVertices: [Vertex] = [Vertex]()) -
     return sortedVertices
 }
 
-func SingleSourceShortestPath(graph: Graph, s: Vertex) -> [Vertex : pw] {
+func SingleSourceShortestPath(graph: Graph, s: Vertex) -> pw {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     let sortedVertices = topologicalSort(s).reverse()
@@ -113,4 +113,29 @@ func SingleSourceShortestPath(graph: Graph, s: Vertex) -> [Vertex : pw] {
     }
     
     return d
+}
+
+func Johnson(graph: Graph) -> Matrix<Vertex, Int> {
+    let s = Vertex("S")
+    graph.addVertex(s)
+    for vertex in graph.canvas {
+        graph.addEdgeFrom(s, to: vertex, weight: 0)
+    }
+    
+    let d = FIFO_Bellman_Ford(graph, s)
+    graph.removeVertex(s)
+    
+    for edge in graph.edges {
+        edge.weight += d[edge.from]!.weight - d[edge.to]!.weight
+    }
+    
+    var D = Matrix<Vertex, Int>()
+    for u in graph.canvas {
+        let pD = Dijkstra(graph, u)
+        for v in graph.edges {
+            D[u, v.to] = pD[v.to]!.weight - (d[u]!.weight - d[v.to]!.weight)
+        }
+    }
+    
+    return D
 }

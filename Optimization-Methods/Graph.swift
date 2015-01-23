@@ -23,12 +23,18 @@ func ==(lhs: Vertex, rhs: Vertex) -> Bool {
 }
 
 
-struct Edge: Printable {
+class Edge: Printable {
     let from: Vertex
     let to: Vertex
-    let weight: Int
+    var weight: Int
     
     var description: String { return "\(from) \(to) \(weight)"}
+    
+    init(from: Vertex, to: Vertex, weight: Int) {
+        self.from = from
+        self.to = to
+        self.weight = weight
+    }
 }
 
 
@@ -42,6 +48,19 @@ public class Graph {
     
     func addVertices(vertices: Vertex...) {
         vertices.map(addVertex)
+    }
+    
+    func removeVertex(vertex: Vertex) {
+        if let index = find(canvas, vertex) {
+            canvas.removeAtIndex(index)
+        }
+        
+        for i in reverse(0..<edges.count) {
+            let edge = edges[i]
+            if edge.from == vertex || edge.to == vertex {
+                edges.removeAtIndex(i)
+            }
+        }
     }
     
     func addEdgeFrom(source: Vertex, to destination: Vertex, weight: Int) {

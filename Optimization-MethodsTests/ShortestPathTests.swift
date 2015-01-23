@@ -95,4 +95,31 @@ class ShortestPathTests: XCTestCase {
         let result = SingleSourceShortestPath(DAC, start)
         XCTAssert(result[end]!.weight == 17, "Single Source calculates minimum path from S to V")
     }
+    
+    func testJohnson() {
+        let jGraph = Graph()
+        
+        let A = Vertex("1")
+        let B = Vertex("2")
+        let C = Vertex("3")
+        let D = Vertex("4")
+        let E = Vertex("5")
+        
+        jGraph.addVertices(A, B, C, D, E)
+        
+        jGraph.addEdgeFrom(A, to: B, weight: 3)
+        jGraph.addEdgeFrom(A, to: C, weight: -2)
+        jGraph.addEdgeFrom(A, to: E, weight: -4)
+        jGraph.addEdgeFrom(B, to: D, weight: 1)
+        jGraph.addEdgeFrom(B, to: E, weight: 7)
+        jGraph.addEdgeFrom(C, to: B, weight: 4)
+        jGraph.addEdgeFrom(D, to: A, weight: 2)
+        jGraph.addEdgeFrom(D, to: C, weight: -5)
+        jGraph.addEdgeFrom(E, to: D, weight: 6)
+        
+        let result = Johnson(jGraph)
+        XCTAssert(result[A, C] == -3, "Johnson calculates minimum path from 1 to 3")
+        XCTAssert(result[E, C] == 1, "Johnson calculates minimum path from 5 to 3")
+        XCTAssert(result[D, B] == -1, "Johnson calculates minimum path from 4 to 2")
+    }
 }

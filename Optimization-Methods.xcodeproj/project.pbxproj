@@ -10,6 +10,8 @@
 		B94284E21A70360500339481 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94284E11A70360500339481 /* Queue.swift */; };
 		B98D2F471A7131B300807A01 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98D2F461A7131B300807A01 /* PriorityQueue.swift */; };
 		B98D2F481A713A8000807A01 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98D2F461A7131B300807A01 /* PriorityQueue.swift */; };
+		B9B131A91A72F7BF00E83268 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B131A81A72F7BF00E83268 /* Matrix.swift */; };
+		B9B131AA1A7305A700E83268 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B131A81A72F7BF00E83268 /* Matrix.swift */; };
 		B9B9FAA61A6FF6E300D9E404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAA51A6FF6E300D9E404 /* AppDelegate.swift */; };
 		B9B9FAA81A6FF6E300D9E404 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B9FAA71A6FF6E300D9E404 /* ViewController.swift */; };
 		B9B9FAAA1A6FF6E300D9E404 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B9FAA91A6FF6E300D9E404 /* Images.xcassets */; };
@@ -37,6 +39,7 @@
 /* Begin PBXFileReference section */
 		B94284E11A70360500339481 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		B98D2F461A7131B300807A01 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		B9B131A81A72F7BF00E83268 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		B9B9FAA01A6FF6E300D9E404 /* Optimization-Methods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Optimization-Methods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9FAA41A6FF6E300D9E404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9B9FAA51A6FF6E300D9E404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				B9B9FAC71A6FF90200D9E404 /* Graph.swift */,
+				B9B131A81A72F7BF00E83268 /* Matrix.swift */,
 				B98D2F461A7131B300807A01 /* PriorityQueue.swift */,
 				B94284E11A70360500339481 /* Queue.swift */,
 			);
@@ -238,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B131A91A72F7BF00E83268 /* Matrix.swift in Sources */,
 				B9B9FACF1A70060300D9E404 /* ShortestPath.swift in Sources */,
 				B94284E21A70360500339481 /* Queue.swift in Sources */,
 				B9B9FAA81A6FF6E300D9E404 /* ViewController.swift in Sources */,
@@ -255,6 +260,7 @@
 				B9B9FACA1A7000EF00D9E404 /* ModelTests.swift in Sources */,
 				B9CBED4F1A70458800B5A4A5 /* Queue.swift in Sources */,
 				B9B9FAD11A701CA900D9E404 /* ShortestPathTests.swift in Sources */,
+				B9B131AA1A7305A700E83268 /* Matrix.swift in Sources */,
 				B9B9FAD21A70200200D9E404 /* ShortestPath.swift in Sources */,
 				B98D2F481A713A8000807A01 /* PriorityQueue.swift in Sources */,
 				B9B9FAB91A6FF6E300D9E404 /* Optimization_MethodsTests.swift in Sources */,

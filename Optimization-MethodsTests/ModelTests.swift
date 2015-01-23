@@ -9,7 +9,7 @@
 import XCTest
 
 class ModelTests: XCTestCase {
-
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,7 +19,7 @@ class ModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
+    
     func testGraphCreation() {
         var graph = Graph()
         
@@ -69,11 +69,24 @@ class ModelTests: XCTestCase {
         pQueue.push(5, value: "Howdy")
         pQueue.push(2, value: "Test")
         XCTAssert(pQueue.pop() == "Test", "Minimum item popped")
-
+        
         pQueue.decreaseKey("Howdy", to: 2)
         XCTAssert(pQueue.pop() == "Howdy", "Minimum item popped after decreaseKey")
         XCTAssert(pQueue.pop() == "Hello", "Minimum item popped")
         
         XCTAssertNil(pQueue.pop(), "Queue ends empty")
+    }
+    
+    func testMatrix() {
+        let matrix = Matrix<String, Int>()
+        
+        XCTAssertNil(matrix["hello", "bye"], "Accessing empty matrix returns nil")
+        
+        matrix["hello", "bye"] = 1
+        XCTAssertNil(matrix["hello", "tan"], "Accessing empty matrix returns nil")
+        XCTAssert(matrix["hello", "bye"] == 1, "Can access elements from the array")
+        
+        matrix["tan", "hello"] = 5
+        XCTAssert(matrix["hello", "bye"] == 1, "Can access elements from the array")
     }
 }
