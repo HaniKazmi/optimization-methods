@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
-typealias pw = [Vertex: (parent: Vertex?, weight: Int)]
+typealias ShortestPathDict = [Vertex: (parent: Vertex?, weight: Int)]
 
-private func initRelax(vertices: [Vertex], s: Vertex) -> pw {
-    var d = pw()
+private func initRelax(vertices: [Vertex], s: Vertex) -> ShortestPathDict {
+    var d = ShortestPathDict()
     
     for vertex in vertices {
         d[vertex] = (nil, 500)
@@ -19,7 +19,7 @@ private func initRelax(vertices: [Vertex], s: Vertex) -> pw {
     return d
 }
 
-func Bellman_Ford(graph: Graph, s: Vertex) -> pw {
+func Bellman_Ford(graph: Graph, s: Vertex) -> ShortestPathDict {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     
@@ -38,11 +38,11 @@ func Bellman_Ford(graph: Graph, s: Vertex) -> pw {
     return d
 }
 
-func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> pw {
+func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> ShortestPathDict {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     
-    let queue = Queue<Vertex>()
+    let queue = FIFOQueue<Vertex>()
     queue.enqueue(s)
     
     func relax(edge: Edge) {
@@ -61,31 +61,31 @@ func FIFO_Bellman_Ford(graph: Graph, s: Vertex) -> pw {
     return d
 }
 
-func Dijkstra(graph: Graph, s: Vertex) -> pw {
+func Dijkstra(graph: Graph, s: Vertex) -> ShortestPathDict {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     
     let queue = PriorityQueue<Int, Vertex>()
     for (vertex, (_, weight)) in d {
-        queue.push(weight, value: vertex)
+        queue.enqueue(weight, value: vertex)
     }
     
     func relax(edge: Edge) {
         let currWeight = d[edge.from]!.weight + edge.weight
         if d[edge.to]!.weight > currWeight {
-            queue.decreaseKey(edge.to, to: currWeight)
             d[edge.to] = (edge.from, currWeight)
+            queue.decreaseKey(edge.to, to: currWeight)
         }
     }
     
-    while let u = queue.pop() {
+    while let u = queue.dequeue() {
         u.neighbours.map(relax)
     }
     
     return d
 }
 
-func topologicalSort(start: Vertex, var sortedVertices: [Vertex] = [Vertex]()) -> [Vertex] {
+func topologicalSort(start: Vertex, var sortedVertices: [Vertex] = []) -> [Vertex] {
     // TODO: 'contains' is O(n), can make O(1)
     if !contains(sortedVertices, start){
         for edge in start.neighbours {
@@ -96,7 +96,7 @@ func topologicalSort(start: Vertex, var sortedVertices: [Vertex] = [Vertex]()) -
     return sortedVertices
 }
 
-func SingleSourceShortestPath(graph: Graph, s: Vertex) -> pw {
+func SingleSourceShortestPath(graph: Graph, s: Vertex) -> ShortestPathDict {
     // Initialisation
     var d = initRelax(graph.canvas, s)
     let sortedVertices = topologicalSort(s).reverse()
@@ -129,7 +129,7 @@ func Johnson(graph: Graph) -> Matrix<Vertex, Int> {
         edge.weight += d[edge.from]!.weight - d[edge.to]!.weight
     }
     
-    var D = Matrix<Vertex, Int>()
+    let D = Matrix<Vertex, Int>()
     for u in graph.canvas {
         let pD = Dijkstra(graph, u)
         for v in graph.edges {

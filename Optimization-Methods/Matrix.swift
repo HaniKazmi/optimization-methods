@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
+/// Basic 2D matrix type where indices can be any hashable type.
 class Matrix<KeyType: Hashable, ValueType> {
-    var storage = [KeyType : [KeyType : ValueType]]()
+    private var storage = [KeyType : [KeyType : ValueType]]()
     
     subscript(x: KeyType, y: KeyType) -> ValueType? {
         get {

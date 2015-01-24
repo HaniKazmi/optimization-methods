@@ -37,7 +37,7 @@ class ModelTests: XCTestCase {
     }
     
     func testQueue() {
-        let queue = Queue<Int>()
+        let queue = FIFOQueue<Int>()
         
         XCTAssertNil(queue.dequeue(), "Queue starts empty")
         
@@ -59,22 +59,22 @@ class ModelTests: XCTestCase {
     func testPriorityQueue() {
         let pQueue = PriorityQueue<Int, String>()
         
-        XCTAssertNil(pQueue.pop(), "Queue starts empty")
+        XCTAssertNil(pQueue.dequeue(), "Queue starts empty")
         
-        pQueue.push(3, value: "Hello")
-        pQueue.push(1, value: "Bye")
+        pQueue.enqueue(3, value: "Hello")
+        pQueue.enqueue(1, value: "Bye")
         
-        XCTAssert(pQueue.pop() == "Bye", "Minimum item popped")
+        XCTAssert(pQueue.dequeue() == "Bye", "Minimum item popped")
         
-        pQueue.push(5, value: "Howdy")
-        pQueue.push(2, value: "Test")
-        XCTAssert(pQueue.pop() == "Test", "Minimum item popped")
+        pQueue.enqueue(5, value: "Howdy")
+        pQueue.enqueue(2, value: "Test")
+        XCTAssert(pQueue.dequeue() == "Test", "Minimum item popped")
         
         pQueue.decreaseKey("Howdy", to: 2)
-        XCTAssert(pQueue.pop() == "Howdy", "Minimum item popped after decreaseKey")
-        XCTAssert(pQueue.pop() == "Hello", "Minimum item popped")
+        XCTAssert(pQueue.dequeue() == "Howdy", "Minimum item popped after decreaseKey")
+        XCTAssert(pQueue.dequeue() == "Hello", "Minimum item popped")
         
-        XCTAssertNil(pQueue.pop(), "Queue ends empty")
+        XCTAssertNil(pQueue.dequeue(), "Queue ends empty")
     }
     
     func testMatrix() {

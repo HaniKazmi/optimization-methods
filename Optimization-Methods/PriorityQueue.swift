@@ -6,16 +6,21 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
+/// Key-Value data structure where the top element always has the lowest key. Implemented using a min-heap
 class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
     typealias heapType = (prio: PrioType, value: ValueType)
     private final var heap = [heapType]()
     
-    func push(priority: PrioType, value: ValueType) {
+    var count: Int { return heap.count }
+    
+    /// Adds an element to the queue in O(log n)
+    func enqueue(priority: PrioType, value: ValueType) {
         heap.append((priority, value))
         percolateUp(heap.count - 1)
     }
     
-    func pop() -> ValueType? {
+    /// Removes the minimum keyed value from the queue and returns the value. O(log n)
+    func dequeue() -> ValueType? {
         if heap.count == 0 { return nil }
         
         swap(&heap[0], &heap[heap.endIndex - 1])
@@ -24,17 +29,31 @@ class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
         return pop.value
     }
     
-    func next() -> ValueType? {
-        return pop()
+    /// Adjusts the key for the given value. O(n)
+    func decreaseKey(value: ValueType, to priority: PrioType) {
+        let index = indexForValue(value)
+        heap[index].prio = priority
+        percolateUp(index)
     }
     
-    var count: Int { return heap.count }
+    // TODO: 'indexForValue' is O(n), can make O(1)
+    private func indexForValue(value: ValueType) -> Int {
+        for (index, (_, element)) in enumerate(heap) {
+            if element == value { return index }
+        }
+        return 0
+    }
     
-    func percolateUp(current: Int) {
-        if current == 0 { return }
-        let parent = (current - 1) >> 1
-        if heap[parent].prio > heap[current].prio {
-            swap(&heap[parent], &heap[current])
+    func next() -> ValueType? {
+        return dequeue()
+    }
+    
+    func percolateUp(index: Int) {
+        if index == 0 { return }
+        
+        let parent = (index - 1) >> 1
+        if heap[parent].prio > heap[index].prio {
+            swap(&heap[parent], &heap[index])
             percolateUp(parent)
         }
     }
@@ -54,20 +73,6 @@ class PriorityQueue<PrioType: Comparable, ValueType: Hashable>: GeneratorType {
             swap(&heap[index], &heap[smallest])
             percolateDown(smallest)
         }
-    }
-    
-    func decreaseKey(value: ValueType, to priority: PrioType) {
-        let index = indexForValue(value)
-        heap[index].prio = priority
-        percolateUp(index)
-    }
-    
-    // TODO: 'indexForValue' is O(n), can make O(1)
-    func indexForValue(value: ValueType) -> Int {
-        for (index, (_, element)) in enumerate(heap) {
-            if element == value { return index }
-        }
-        return 0
     }
 }
 

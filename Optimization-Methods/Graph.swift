@@ -6,16 +6,18 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
+/// Represents a node on a graph
 class Vertex: Hashable, Printable {
     let key: String
+    /// The adjaceny list for the vertex
     var neighbours = [Edge]()
+    
     var hashValue: Int { return key.hashValue }
+    var description: String { return key }
     
     init(_ key: String) {
         self.key = key
     }
-    
-    var description: String { return key }
 }
 
 func ==(lhs: Vertex, rhs: Vertex) -> Bool {
@@ -23,12 +25,13 @@ func ==(lhs: Vertex, rhs: Vertex) -> Bool {
 }
 
 
+/// A basic edge data structure
 class Edge: Printable {
     let from: Vertex
     let to: Vertex
     var weight: Int
     
-    var description: String { return "\(from) \(to) \(weight)"}
+    var description: String { return "From: \(from) To: \(to) Weight: \(weight)"}
     
     init(from: Vertex, to: Vertex, weight: Int) {
         self.from = from
@@ -38,10 +41,12 @@ class Edge: Printable {
 }
 
 
-public class Graph {
+/// A directed graph canvas
+class Graph {
     private(set) var canvas = [Vertex]()
     private(set) var edges = [Edge]()
     
+    /// Adds a vertex to the canvas
     func addVertex(vertex: Vertex) {
         canvas.append(vertex)
     }
@@ -50,6 +55,7 @@ public class Graph {
         vertices.map(addVertex)
     }
     
+    /// Removes a vertex from the graph, along with all associated edges
     func removeVertex(vertex: Vertex) {
         if let index = find(canvas, vertex) {
             canvas.removeAtIndex(index)

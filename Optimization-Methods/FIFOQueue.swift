@@ -1,8 +1,8 @@
 //
-//  Queue.swift
+//  FIFOQueue.swift
 //  Optimization-Methods
 //
-//  Created by Hani Kazmi on 21/01/2015.
+//  Created by Hani Kazmi on 24/01/2015.
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
@@ -15,12 +15,13 @@ class Node<T> {
     }
 }
 
-
-public class Queue<T: Equatable>: GeneratorType {
-    var head: Node<T>? = nil
-    var tail: Node<T>? = nil
+/// First in First out queue implemented using a linked list
+class FIFOQueue<T: Equatable>: GeneratorType {
+    private var head: Node<T>? = nil
+    private var tail: Node<T>? = nil
     var isEmpty: Bool { return head == nil }
     
+    /// Adds a value to the end of the queue in O(1)
     func enqueue(value: T) {
         let node = Node(value)
         
@@ -32,6 +33,8 @@ public class Queue<T: Equatable>: GeneratorType {
         tail = node
     }
     
+    /// Removes the value at the head of the queue and returns it in O(1).
+    /// Returns nil if queue is empty.
     func dequeue() -> T? {
         if let node = head {
             head = node.next
@@ -40,10 +43,11 @@ public class Queue<T: Equatable>: GeneratorType {
         return nil
     }
     
-    public func next() -> T? {
+    func next() -> T? {
         return dequeue()
     }
     
+    /// Returns true if the queue contains the given object. O(number of elements in queue)
     func contains(e: T) -> Bool {
         var next = head
         do {
@@ -54,9 +58,9 @@ public class Queue<T: Equatable>: GeneratorType {
     }
 }
 
-extension Queue: SequenceType {
-    typealias Generator = Queue
-    public func generate() -> Generator {
+extension FIFOQueue: SequenceType {
+    typealias Generator = FIFOQueue
+    func generate() -> Generator {
         return self
     }
 }
