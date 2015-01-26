@@ -21,7 +21,7 @@ class ModelTests: XCTestCase {
     }
     
     func testGraphCreation() {
-        var graph = Graph()
+        let graph = Graph()
         
         var A = Vertex("A")
         var B = Vertex("B")
@@ -32,8 +32,22 @@ class ModelTests: XCTestCase {
         
         graph.addEdgeFrom(A, to: B, weight: 5)
         graph.addEdgeFrom(A, to: C, weight: 10)
-        XCTAssert(graph.canvas.count == 3, "Graph is created")
+        XCTAssert(graph.vertices.count == 3, "Graph is created")
         XCTAssert(graph.edges.count == 2, "All edges present")
+    }
+    
+    func testPerformanceGraphRemove() {
+        let graph = Graph()
+        
+        for i in 0...10000 {
+            graph.addVertex(Vertex(i.description))
+        }
+        let A = Vertex("A")
+        graph.addVertex(A)
+        
+        self.measureBlock() {
+            graph.removeVertex(A)
+        }
     }
     
     func testQueue() {

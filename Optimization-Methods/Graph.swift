@@ -43,22 +43,23 @@ class Edge: Printable {
 
 /// A directed graph canvas
 class Graph {
-    private(set) var canvas = [Vertex]()
+    private(set) var vertices = [Vertex]()
     private(set) var edges = [Edge]()
     
     /// Adds a vertex to the canvas
     func addVertex(vertex: Vertex) {
-        canvas.append(vertex)
+        vertices.append(vertex)
     }
     
+    /// Adds all given vertices to the canvas
     func addVertices(vertices: Vertex...) {
         vertices.map(addVertex)
     }
     
     /// Removes a vertex from the graph, along with all associated edges
     func removeVertex(vertex: Vertex) {
-        if let index = find(canvas, vertex) {
-            canvas.removeAtIndex(index)
+        if let index = find(vertices, vertex) {
+            vertices.removeAtIndex(index)
         }
         
         for i in reverse(0..<edges.count) {
@@ -69,6 +70,7 @@ class Graph {
         }
     }
     
+    /// Creates an edge, and updates the canvas with it along with the source vertex's adjaceny list
     func addEdgeFrom(source: Vertex, to destination: Vertex, weight: Int) {
         var edge = Edge(from: source, to: destination, weight: weight)
         edges.append(edge)

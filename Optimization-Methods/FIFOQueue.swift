@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Hani Kazmi. All rights reserved.
 //
 
-class Node<T> {
+/// Basic node structure for linked lists
+private class Node<T> {
     let value: T
     var next: Node<T>?
     
